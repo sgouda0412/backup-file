@@ -54,3 +54,11 @@ actions = [
     for signal in signals
 ]
 print(actions)
+
+
+def segregate(arr):
+    return [x for x in arr if x == 0] + [x for x in arr if x == 1]
+
+
+arr = [0, 1, 0, 1, 0, 0, 1, 1, 1, 0]
+print(segregate(arr))
