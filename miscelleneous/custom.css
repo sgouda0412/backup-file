@@ -2,5 +2,6 @@
   font-family: "Comic Mono"; 
 }
 .tab-label {
-    font-weight: bold !important;
+  font-family: "Comic Mono";
+  font-weight: bold !important;
 }
