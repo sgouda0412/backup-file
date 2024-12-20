@@ -1,3 +1,15 @@
+from collections import (
+    ChainMap,
+    Counter,
+    defaultdict,
+    deque,
+    OrderedDict,
+    UserDict,
+    UserList,
+    UserString,
+)
+
+
 x = [1, 2, 3, 4, 5]
 squared = [i**2 for i in x]
 print(squared)
@@ -14,28 +26,20 @@ print(result)
 
 a = [1, 2, 3, 4, 5]
 result = [
-    (
-        "Divisible by 2"
-        if n % 2 == 0
-        else "Divisible by 3" if n % 3 == 0 else "Other"
-    )
+    ("Divisible by 2" if n % 2 == 0 else "Divisible by 3" if n % 3 == 0 else "Other")
     for n in a
 ]
 print(result)
 
 
 numbers = [-10, 0, 15, -3, 20]
-result = [
-    "Negative" if n < 0 else "Zeroes" if n == 0 else "Positive"
-    for n in numbers
-]
+result = ["Negative" if n < 0 else "Zeroes" if n == 0 else "Positive" for n in numbers]
 print(result)
 
 
 ages = [3, 12, 17, 20, 65]
 categories = [
-    "Child" if age < 13 else "Tenagers" if age < 18 else "Adult"
-    for age in ages
+    "Child" if age < 13 else "Tenagers" if age < 18 else "Adult" for age in ages
 ]
 print(categories)
 

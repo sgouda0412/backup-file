@@ -1,5 +1,6 @@
 .explorer-viewlet { 
   font-family: "Comic Mono"; 
+  font-weight: bold !important;
 }
 .tab-label {
   font-family: "Comic Mono";
