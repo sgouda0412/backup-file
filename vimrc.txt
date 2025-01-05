@@ -1,0 +1,77 @@
+" Start plugin manager setup
+call plug#begin('~/.vim/plugged')
+
+" Plugin list
+Plug 'dense-analysis/ale' " Linting
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion
+Plug 'tpope/vim-sensible' " Sensible default settings
+Plug 'morhetz/gruvbox' " Gruvbox color scheme
+
+call plug#end()
+
+" General settings
+set nocompatible
+set encoding=utf-8
+set number
+set relativenumber
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set autoindent
+set smartindent
+set updatetime=300
+set shortmess+=c
+
+" Enable filetype plugins and syntax highlighting
+filetype plugin indent on
+syntax on
+
+" Set leader key
+let mapleader = "\\"
+
+" Configure the Enter key for CoC
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
+
+" Navigation mappings for CoC
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>rn <Plug>(coc-rename)
+nmap <silent> <leader>f <Plug>(coc-format)
+
+" ALE settings
+let g:ale_fix_on_save = 1
+let g:ale_linters = {
+\   'python': ['flake8', 'pylint'],
+\   'sh': ['shellcheck'],
+\   'cpp': ['clangd']
+\}
+let g:ale_fixers = {
+\   'python': ['black', 'isort'],
+\   'sh': ['shfmt'],
+\   'cpp': ['clang-format']
+\}
+
+" Filetype-specific mappings
+augroup filetype_mappings
+    autocmd!
+    autocmd FileType python nnoremap <buffer> <silent> <C-r> :w<CR>:!python3 %<CR>
+    autocmd FileType sh nnoremap <buffer> <silent> <C-r> :w<CR>:!chmod +x % && bash %<CR>
+    autocmd FileType cpp nnoremap <buffer> <silent> <C-r> :w<CR>:!g++ -std=c++17 -o %:r % && ./%:r<CR>
+    autocmd FileType python nnoremap <buffer> <silent> <C-L> :w<CR>:!flake8 %<CR>
+    autocmd FileType python nnoremap <buffer> <silent> <C-F> :w<CR>:!black % && isort %<CR>
+    autocmd FileType sh nnoremap <buffer> <silent> <C-L> :w<CR>:!shellcheck -f gcc %<CR>
+    autocmd FileType sh nnoremap <buffer> <silent> <C-F> :w<CR>:!shfmt -w %<CR>
+    autocmd FileType cpp nnoremap <buffer> <silent> <C-L> :w<CR>:!clang-tidy % -- -std=c++17<CR>
+    autocmd FileType cpp nnoremap <buffer> <silent> <C-F> :w<CR>:!clang-format -i %<CR>
+
+augroup END
+      
+autocmd BufWritePre *.py,*.sh,*.cpp,*.c :ALEFix
+
+" Coc extensions
+let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-clangd']
+
+" Color scheme settings
+syntax enable
+colorscheme gruvbox " Use Gruvbox color scheme
+set background=dark " Set background to dark mode for better readability
