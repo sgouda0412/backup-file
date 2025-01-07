@@ -7,3 +7,4 @@ https://www.geeksforgeeks.org/sql-tutorial/?ref=dhm
 https://www.geeksforgeeks.org/bash-scripting-introduction-to-bash-and-bash-scripting/?ref=asr1
 https://www.geeksforgeeks.org/c-plus-plus/?ref=ghm
 https://www.geeksforgeeks.org/golang/?ref=ghm
+https://tldp.org/LDP/Bash-Beginners-Guide/html/?source=post_page-----94ef6731c365--------------------------------
